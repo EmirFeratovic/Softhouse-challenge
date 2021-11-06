@@ -1,0 +1,29 @@
+#navBar{
+    width: 100vw;
+    background-color: #464866;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    position: absolute;
+    top: 0;
+}
+
+#pageName{
+    display: flex;
+    padding-left: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#list{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+li{
+ padding: 10px;
+}
