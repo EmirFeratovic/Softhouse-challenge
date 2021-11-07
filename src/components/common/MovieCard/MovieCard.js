@@ -24,9 +24,28 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function MovieCard({ title, poster_path, overview }) {
+export default function MovieCard({
+  title,
+  poster_path,
+  overview,
+  release_date,
+}) {
   const [expanded, setExpanded] = React.useState(false);
-
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const date = release_date.split("-");
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -36,7 +55,11 @@ export default function MovieCard({ title, poster_path, overview }) {
       sx={{ width: 300 }}
       style={{ backgroundColor: "#AAABB8", padding: 25, margin: 25 }}
     >
-      <CardHeader title={title} subheader="September 14, 2016" />
+      <CardHeader
+        title={title}
+        subheader={months[parseInt(date[1])] + " " + date[2] + ", " + date[0]}
+        style={{ height: 100, width: 300 }}
+      />
       <CardMedia
         component="img"
         height="195"

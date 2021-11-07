@@ -6,7 +6,7 @@ function NavBar() {
     <div id={"navBar"}>
       <div id={"pageName"}>
         <Logo />
-        <h1 style={{ paddingLeft: 10 }}>PopularMovies</h1>
+        <h1 style={{ paddingLeft: 10, color: "#AAABB8" }}>PopularMovies</h1>
       </div>
       <ul id={"list"}>
         <li>Home</li>

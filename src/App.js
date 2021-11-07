@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route exact path="/loader" element={<Loader />}></Route>
         <Route exact path="" element={<MainPage />}></Route>
-        <Route exact path="movie" element={<MovieCard />}></Route>
+        <Route exact path="/movie" element={<MovieCard />}></Route>
       </Routes>
     </Router>
   );
