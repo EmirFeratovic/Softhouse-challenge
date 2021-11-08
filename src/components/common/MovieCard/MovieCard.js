@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -9,9 +9,9 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./MovieCard.css";
+import { MoviesContext } from "../../../App";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,8 +29,21 @@ export default function MovieCard({
   poster_path,
   overview,
   release_date,
+  id,
+  liked,
 }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const { setMovies, movies } = useContext(MoviesContext);
+
+  const toggleLike = () => {
+    setMovies(
+      movies.map((movie) => {
+        if (movie.id === id) movie.liked = !movie.liked;
+        return movie;
+      })
+    );
+  };
+
   var months = [
     "January",
     "February",
@@ -58,20 +71,16 @@ export default function MovieCard({
       <CardHeader
         title={title}
         subheader={months[parseInt(date[1])] + " " + date[2] + ", " + date[0]}
-        style={{ height: 100, width: 300 }}
+        style={{ height: 100, margin: 10, padding: 0 }}
       />
       <CardMedia
         component="img"
-        height="195"
         image={"https://image.tmdb.org/t/p/original" + poster_path}
         alt="Paella dish"
       />
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton aria-label="add to favorites" onClick={toggleLike}>
+          <FavoriteIcon color={liked ? "secondary" : "primary"} />
         </IconButton>
         <ExpandMore
           expand={expanded}

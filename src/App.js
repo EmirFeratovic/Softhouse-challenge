@@ -2,19 +2,37 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./logo.svg";
 import "./App.css";
-import Loader from "./components/common/Loader/Loader";
 import MainPage from "./components/MainPage";
-import MovieCard from "./components/common/MovieCard/MovieCard";
+import MovieService from "./services/MovieService";
+import FavoritesPage from "./components/FavoritesPage";
+
+export const MoviesContext = React.createContext([]);
 
 function App() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const fetchData = () => {
+    MovieService.getMovies().then((data) => {
+      setMovies(data.results);
+      setLoading(false);
+    });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/loader" element={<Loader />}></Route>
-        <Route exact path="" element={<MainPage />}></Route>
-        <Route exact path="/movie" element={<MovieCard />}></Route>
-      </Routes>
-    </Router>
+    <MoviesContext.Provider value={{ movies, setMovies }}>
+      <Router>
+        <Routes>
+          <Route exact path="/home" element={<MainPage loading={loading} />} />
+          <Route
+            exact
+            path="/favorites"
+            element={<FavoritesPage loading={loading} />}
+          />
+        </Routes>
+      </Router>
+    </MoviesContext.Provider>
   );
 }
 

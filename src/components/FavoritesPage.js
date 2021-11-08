@@ -6,9 +6,8 @@ import Loader from "./common/Loader/Loader";
 import MovieCard from "./common/MovieCard/MovieCard";
 import { MoviesContext } from "../App";
 
-function MainPage({ loading }) {
+function FavoritesPage({ loading }) {
   const { movies } = useContext(MoviesContext);
-  console.log(movies);
   return (
     <div>
       {loading ? (
@@ -22,7 +21,9 @@ function MainPage({ loading }) {
           </div>
           <div style={{ padding: "100px", display: "flex", flexWrap: "wrap" }}>
             {movies &&
-              movies.map((movie) => <MovieCard {...movie} key={movie.id} />)}
+              movies
+                .filter((movie) => movie.liked)
+                .map((movie) => <MovieCard {...movie} key={movie.id} />)}
           </div>
         </div>
       )}
@@ -30,4 +31,4 @@ function MainPage({ loading }) {
   );
 }
 
-export default MainPage;
+export default FavoritesPage;
