@@ -13,10 +13,7 @@ function MainPage({ loading }) {
   return (
     <div>
       {loading ? (
-        <div
-          className={"Loader"}
-          class={"navbar navbar-default navbar-fixed-bottom"}
-        >
+        <div className={"Loader"}>
           <Loader />
         </div>
       ) : (
