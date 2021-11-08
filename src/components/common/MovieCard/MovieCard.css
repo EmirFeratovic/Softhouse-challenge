@@ -1,5 +1,7 @@
 #singleMovieCard{
     background-color: #AAABB8;
-    padding: 25px;
     margin: 25px;
+    margin-top: 15vh;
+    width: 300px;
 }
+

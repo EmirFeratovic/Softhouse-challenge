@@ -14,11 +14,10 @@ export default function MovieRating(value) {
       }}
     >
       <Rating
-        style={{}}
         value={value.value / 2}
         readOnly
         precision={0.1}
-        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+        emptyIcon={<StarIcon style={{ opacity: 0.55 }} />}
       />
     </div>
   );

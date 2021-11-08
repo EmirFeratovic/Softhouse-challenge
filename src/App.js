@@ -27,9 +27,10 @@ function App() {
           <Route element={<MainPage loading={loading} />} />
           <Route
             exact
-            path={"/home" ? "/home" : "/home"}
+            path={"/home"}
             element={<MainPage loading={loading} />}
           />
+          <Route exact path={"/"} element={<MainPage loading={loading} />} />
           <Route
             exact
             path="/favorites"

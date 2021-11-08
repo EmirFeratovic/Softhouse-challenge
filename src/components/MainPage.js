@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "../logo.svg";
 import "./MainPage.css";
 import NavBar from "./common/NavBar/NavBar";
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import Loader from "./common/Loader/Loader";
 import MovieCard from "./common/MovieCard/MovieCard";
 import { MoviesContext } from "../App";
@@ -20,9 +21,11 @@ function MainPage({ loading }) {
           <div>
             <NavBar />
           </div>
-          <div style={{ padding: "100px", display: "flex", flexWrap: "wrap" }}>
-            {movies &&
-              movies.map((movie) => <MovieCard {...movie} key={movie.id} />)}
+          <div>
+            <ScrollMenu>
+              {movies &&
+                movies.map((movie) => <MovieCard {...movie} key={movie.id} />)}
+            </ScrollMenu>
           </div>
         </div>
       )}

@@ -66,7 +66,7 @@ export default function MovieCard({
   };
 
   return (
-    <Card sx={{ width: 300 }} id="singleMovieCard">
+    <Card id="singleMovieCard">
       <CardHeader
         title={title}
         subheader={months[parseInt(date[1])] + " " + date[2] + ", " + date[0]}
