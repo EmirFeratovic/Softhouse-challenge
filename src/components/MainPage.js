@@ -13,7 +13,10 @@ function MainPage({ loading }) {
   return (
     <div>
       {loading ? (
-        <div className={"Loader"}>
+        <div
+          className={"Loader"}
+          class={"navbar navbar-default navbar-fixed-bottom"}
+        >
           <Loader />
         </div>
       ) : (
@@ -21,7 +24,7 @@ function MainPage({ loading }) {
           <div>
             <NavBar />
           </div>
-          <div>
+          <div style={{ marginTop: "10vh" }}>
             <ScrollMenu>
               {movies &&
                 movies.map((movie) => <MovieCard {...movie} key={movie.id} />)}
