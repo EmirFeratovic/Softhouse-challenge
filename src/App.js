@@ -24,7 +24,12 @@ function App() {
     <MoviesContext.Provider value={{ movies, setMovies }}>
       <Router>
         <Routes>
-          <Route exact path="/home" element={<MainPage loading={loading} />} />
+          <Route element={<MainPage loading={loading} />} />
+          <Route
+            exact
+            path={"/home" ? "/home" : "/home"}
+            element={<MainPage loading={loading} />}
+          />
           <Route
             exact
             path="/favorites"

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import GridLoader from "react-spinners/GridLoader";
-import { ReactComponent as Logo } from "../../../logo.svg";
 import "../../../logo.svg";
 import "./Loader.css";
 

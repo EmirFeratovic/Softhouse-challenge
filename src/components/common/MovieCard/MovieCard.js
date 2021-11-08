@@ -12,6 +12,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./MovieCard.css";
 import { MoviesContext } from "../../../App";
+import MovieRating from "../Rating/MovieRating";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -31,6 +32,7 @@ export default function MovieCard({
   release_date,
   id,
   liked,
+  vote_average,
 }) {
   const [expanded, setExpanded] = useState(false);
   const { setMovies, movies } = useContext(MoviesContext);
@@ -64,10 +66,7 @@ export default function MovieCard({
   };
 
   return (
-    <Card
-      sx={{ width: 300 }}
-      style={{ backgroundColor: "#AAABB8", padding: 25, margin: 25 }}
-    >
+    <Card sx={{ width: 300 }} id="singleMovieCard">
       <CardHeader
         title={title}
         subheader={months[parseInt(date[1])] + " " + date[2] + ", " + date[0]}
@@ -76,12 +75,15 @@ export default function MovieCard({
       <CardMedia
         component="img"
         image={"https://image.tmdb.org/t/p/original" + poster_path}
-        alt="Paella dish"
+        alt="Movie poster"
       />
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites" onClick={toggleLike}>
           <FavoriteIcon color={liked ? "secondary" : "primary"} />
         </IconButton>
+        <CardContent style={{ textAlign: "center" }}>
+          <MovieRating value={vote_average} key={id} />
+        </CardContent>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -93,7 +95,7 @@ export default function MovieCard({
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body1" color="text.primary">
             {overview}
           </Typography>
         </CardContent>
