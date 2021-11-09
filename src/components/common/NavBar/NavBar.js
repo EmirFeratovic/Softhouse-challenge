@@ -1,42 +1,56 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../../logo.svg";
+import TextField from "@mui/material/TextField";
+import MovieService from "../../../services/MovieService";
+import App, { MoviesContext } from "../../../App";
+
 function NavBar() {
+  const { movies, setMovies } = useContext(MoviesContext);
+  const searchMovies = (searchTerm) => {
+    MovieService.searchMovies(searchTerm).then((data) => {
+      setMovies(
+        data.results
+          ? data.results.filter(
+              (movie) => movie.release_date && movie.poster_path
+            )
+          : movies
+      );
+    });
+  };
+
   return (
     <div id={"navBar"}>
       <div id={"pageName"}>
         <Logo />
-        <h1 style={{ paddingLeft: 10, color: "#AAABB8" }}>PopularMovies</h1>
+        <h2 id="siteTitle">PopularMovies</h2>
       </div>
-      <ul id={"list"}>
-        <li>
-          <Link
-            to="/home"
-            style={{
-              color: "#AAABB8",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "20px",
-            }}
-          >
-            HOME
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/favorites"
-            style={{
-              color: "#AAABB8",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "20px",
-            }}
-          >
-            FAVOURITE MOVIES
-          </Link>
-        </li>
-      </ul>
+      <div id={"listDiv"}>
+        <ul id={"list"}>
+          <li className="buttons">
+            <Link className={"links"} to={"/home"}>
+              HOME
+            </Link>
+          </li>
+          <li className="buttons">
+            <Link className={"links"} to="/favorites">
+              FAVOURITE MOVIES
+            </Link>
+          </li>
+          <li>
+            <TextField
+              id="filled-search"
+              label="Search"
+              type="search"
+              variant="filled"
+              onChange={(event) => {
+                searchMovies(event.target.value);
+              }}
+            />
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

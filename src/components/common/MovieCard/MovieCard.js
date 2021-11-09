@@ -45,7 +45,6 @@ export default function MovieCard({
       })
     );
   };
-
   var months = [
     "January",
     "February",
@@ -60,46 +59,52 @@ export default function MovieCard({
     "November",
     "December",
   ];
-  const date = release_date.split("-");
+  const date = release_date && release_date.split("-");
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <Card id="singleMovieCard">
-      <CardHeader
-        title={title}
-        subheader={months[parseInt(date[1])] + " " + date[2] + ", " + date[0]}
-        style={{ height: 100, margin: 10, padding: 0 }}
-      />
-      <CardMedia
-        component="img"
-        image={"https://image.tmdb.org/t/p/original" + poster_path}
-        alt="Movie poster"
-      />
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={toggleLike}>
-          <FavoriteIcon color={liked ? "secondary" : "primary"} />
-        </IconButton>
-        <CardContent style={{ textAlign: "center" }}>
-          <MovieRating value={vote_average} key={id} />
-        </CardContent>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography variant="body1" color="text.primary">
-            {overview}
-          </Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+    <div id="singleMovieCardDiv">
+      <Card id="singleMovieCard">
+        <CardHeader
+          title={title}
+          subheader={
+            release_date &&
+            months[parseInt(date[1])] + " " + date[2] + ", " + date[0]
+          }
+          style={{ height: 100, margin: 10, padding: 0 }}
+        />
+        <CardMedia
+          component="img"
+          image={"https://image.tmdb.org/t/p/original" + poster_path}
+          alt="Movie poster"
+        />
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites" onClick={toggleLike}>
+            <FavoriteIcon color={liked ? "secondary" : "primary"} />
+          </IconButton>
+          <CardContent style={{ textAlign: "center" }}>
+            <MovieRating value={vote_average} key={id} />
+          </CardContent>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+            data-testid="expand-icon"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography variant="body1" color="text.primary">
+              {overview}
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </div>
   );
 }

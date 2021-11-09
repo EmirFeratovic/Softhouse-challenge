@@ -3,7 +3,6 @@ import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 
 export default function MovieRating(value) {
-  console.log(value);
   return (
     <div
       style={{

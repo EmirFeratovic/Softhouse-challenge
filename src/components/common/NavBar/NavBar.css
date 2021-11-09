@@ -19,11 +19,28 @@
 }
 
 #list{
-    display: flex;
     flex-direction: row;
     list-style-type: none;
+    display: table;
+}
+
+#siteTitle{
+    padding-left: 10px;
+    color: #AAABB8;
 }
 
 li{
- padding: 10px;
+ padding: 1vw;
+}
+
+.links{
+    color: #AAABB8;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.buttons{
+    vertical-align: middle;
+    display: table-cell;
 }

@@ -1,0 +1,19 @@
+.FavoritesPage {
+    width: 100vw;
+    align-content: center;
+}
+
+#downloadButton{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#scrollMenu{
+    padding-top: 10vh;
+}
+
+
+
+
+

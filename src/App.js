@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./logo.svg";
 import "./App.css";
-import MainPage from "./components/MainPage";
+import MainPage from "./components/pages/MainPage";
 import MovieService from "./services/MovieService";
-import FavoritesPage from "./components/FavoritesPage";
+import FavoritesPage from "./components/pages/FavoritesPage";
 
 export const MoviesContext = React.createContext([]);
 
@@ -21,7 +21,7 @@ function App() {
     fetchData();
   }, []);
   return (
-    <MoviesContext.Provider value={{ movies, setMovies }}>
+    <MoviesContext.Provider value={{ movies, setMovies, loading, setLoading }}>
       <Router>
         <Routes>
           <Route element={<MainPage loading={loading} />} />
