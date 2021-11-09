@@ -57,7 +57,9 @@ function FavoritesPage({ loading }) {
               <Button
                 variant={"primary"}
                 startIcon={<SaveIcon />}
-                style={{ backgroundColor: "#AAABB8" }}
+                style={{
+                  backgroundColor: "#2E9CCA",
+                }}
                 onClick={handleSave}
               >
                 Save favorites
